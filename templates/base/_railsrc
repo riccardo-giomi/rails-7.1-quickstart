@@ -1,0 +1,6 @@
+-a propshaft
+--skip-test
+--skip-system-test
+--css=tailwind
+
+--template=https://raw.githubusercontent.com/riccardo-giomi/rails-7.1-quickstart/master/templates/base/template.rb

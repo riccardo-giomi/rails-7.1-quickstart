@@ -1,0 +1,39 @@
+- # locals: (<%= model_resource_name %>:)
+
+div class="border-2 border-black dark:border-slate-600 p-2 mt-2"
+  = form_with(model: <%= model_resource_name %>, class: 'contents') do |form|
+    - if <%= singular_table_name %>.errors.any?
+      div id="errors-explanation"
+        - errors_count = pluralize(<%= singular_table_name %>.errors.count, 'error')
+        h2 = "#{errors_count} prohibited this <%= singular_table_name %> from being saved:"
+        ul class="list-disc"
+          - <%= singular_table_name %>.errors.each do |error|
+            li = error.full_message
+<% attributes.each do |attribute| -%>
+<%   name = attribute.column_name -%>
+<%   type = attribute.field_type -%>
+<%   options = nil -%>
+<%   if attribute.password_digest? -%>
+<%     name = 'password' -%>
+<%     type = 'password_field' -%>
+<%   elsif attribute.attachments? -%>
+<%     options = 'multiple: true' -%>
+<%   end -%>
+
+    div class="my-3"
+      = form.label :<%= name %>
+      = form.<%= type %> :<%= name %><%= options ? ", #{options}" : '' %>
+      - if error = <%= singular_table_name %>.errors[:<%= name %>]&.first
+        p class="field-error-explanation" = error.capitalize
+<%   if attribute.password_digest? -%>
+
+    div class="my-3"
+      = form.label :password_confirmation
+      = form.password_field :password_confirmation
+      - if error = <%= singular_table_name %>.errors[:password_confirmation]&.first
+        p class="field-error-explanation" = error.capitalize
+<%   end -%>
+<% end -%>
+
+    div class="pt-3"
+      = form.submit class: 'btn-submit'

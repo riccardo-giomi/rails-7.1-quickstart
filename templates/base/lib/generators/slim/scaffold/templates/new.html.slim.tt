@@ -1,0 +1,8 @@
+div class="w-full"
+  div class="header lg:flex items-center gap-1"
+    div class="lg:flex-grow"
+      h1 class="text-left"  New <%= human_name.downcase %>
+    div class="lg:flex-shrink"
+      = link_to 'Back to <%= human_name.pluralize.downcase %>', <%= index_helper(type: :path) %>, class: 'button'
+
+  = render 'form', <%= model_resource_name %>: @<%= model_resource_name %>

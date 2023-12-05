@@ -1,0 +1,6 @@
+# Installing extra Gems with the template after the new Rails application is
+# created will inevitably create duplicated groups, can be fixed manually after
+# the installation.
+Bundler/DuplicatedGroup:
+  Exclude:
+    - Gemfile
