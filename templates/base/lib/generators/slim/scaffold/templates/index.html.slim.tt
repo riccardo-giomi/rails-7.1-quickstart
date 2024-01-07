@@ -1,4 +1,4 @@
-- content_title = <%= human_name.pluralize %>
+- content_title = '<%= human_name.pluralize %>'
 - content_for :page_title, content_title
 
 div class="w-full"
