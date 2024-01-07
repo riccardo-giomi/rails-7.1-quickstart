@@ -18,9 +18,6 @@ after_bundle do
   copy_file '.rubocop.yml'
   copy_file '.rubocop_todo.yml'
 
-  # Let RuboCop fix the initial files.
-  run 'bundle exec rubocop -A --fail-level A > /dev/null || true'
-
   copy_file '.gitignore', force: true
   copy_file '.rspec'
   directory 'spec'
@@ -28,6 +25,20 @@ after_bundle do
   apply 'app/template.rb'
   apply 'config/template.rb'
   apply 'lib/template.rb'
+
+  template 'MIT-LICENSE'
+
+  unless options['skip_active_storage']
+    say("\nSetting up ActiveStorage...", :yellow)
+    rails_command 'active_storage:install '
+    say('... done, remember to run bin/rails db:migrate.', :yellow)
+    say(<<~SAY, :yellow)
+      You might also want to check the system requirements at https://guides.rubyonrails.org/v7.1/active_storage_overview.html#requirements.
+    SAY
+  end
+
+  # Let RuboCop fix the initial files.
+  run 'bundle exec rubocop -A --fail-level A > /dev/null || true'
 end
 
 # Dear Rubocop, I like my definitions at the end.
