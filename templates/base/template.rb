@@ -2,9 +2,6 @@
 
 add_template_repository_to_source_path
 
-gem 'active_storage_validations'
-gem 'image_processing'
-gem 'ruby-vips'
 gem_group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'factory_bot_rails'
@@ -31,14 +28,19 @@ after_bundle do
 
   template 'MIT-LICENSE'
 
-  unless options['skip_active_storage']
-    say("\nSetting up ActiveStorage...", :yellow)
-    rails_command 'active_storage:install '
-    say('... done.', :yellow)
-    say(<<~SAY, :yellow)
-      You might also want to check the system requirements at https://guides.rubyonrails.org/v7.1/active_storage_overview.html#requirements.
-    SAY
-  end
+  say("\nSetting up ActiveStorage...", :yellow)
+  rails_command 'active_storage:install '
+
+  say('Installing gems for ActiveStorage validations and processing')
+
+  gem 'active_storage_validations'
+  gem 'image_processing'
+  gem 'ruby-vips'
+
+  say('... done.', :yellow)
+  say(<<~SAY, :yellow)
+    You might also want to check the system requirements at https://guides.rubyonrails.org/v7.1/active_storage_overview.html#requirements.
+  SAY
 
   # Let RuboCop fix the initial files.
   run 'bundle exec rubocop -A --fail-level A > /dev/null || true'
