@@ -16,7 +16,7 @@ for attribute in attributes
                      # Because :complete_<model> factories are generated with booleans set as true
                      'true'
                    else
-                     attribute.default.to_s
+                     attribute.factory_value.to_s
                    end
 -%>
     expect(rendered).to match(/<%= expected_value %>/) # #<%= attribute.name %>

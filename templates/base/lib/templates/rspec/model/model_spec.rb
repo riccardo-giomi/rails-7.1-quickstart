@@ -8,7 +8,7 @@ RSpec.describe <%= class_name %> do
 
   describe '.attributes' do
 <%     normal_attributes.each do |attribute| -%>
-    specify('<%= attribute.name %>') { expect(<%= singular_name %>.<%= attribute.name %>).to eq(<%= attribute.default.inspect %>) }
+    specify('<%= attribute.name %>') { expect(<%= singular_name %>.<%= attribute.name %>).to eq(<%= attribute.factory_value.inspect %>) }
 <%     end -%>
   end
 <%   end -%>

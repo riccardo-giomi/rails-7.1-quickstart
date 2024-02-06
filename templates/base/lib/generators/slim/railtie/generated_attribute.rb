@@ -45,31 +45,31 @@ module Rails
         end
       end
 
-      def default # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
-        @default ||= case type
-                     when :string, :text
-                       "#{name.capitalize} Value"
-                     when :integer
-                       rand(1..99)
-                     when :float
-                       rand(1.0..9.9)
-                     when :decimal
-                       rand(1.0..9.9).to_s
-                     when :datetime, :timestamp
-                       "20#{rand(10..23)}-#{rand(1..12)}-#{rand(1..28)} #{rand(0..23)}:#{rand(0..59)}:#{rand(0..59)}"
-                     when :date
-                       "20#{rand(10..23)}-#{rand(1..12)}-#{rand(1..28)}"
-                     when :time
-                       "#{rand(0..23)}:#{rand(0..59)}:#{rand(0..59)}"
-                     when :boolean
-                       false
-                     when :references, :belongs_to,
-                          :attachment, :attachments,
-                          :rich_text
-                       nil
-                     else
-                       ''
-                     end
+      def factory_value # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
+        @factory_value ||= case type
+                           when :string, :text
+                             "#{name.capitalize} Value"
+                           when :integer
+                             rand(1..99)
+                           when :float
+                             rand(1.0..9.9)
+                           when :decimal
+                             rand(1.0..9.9).to_s
+                           when :datetime, :timestamp
+                             "20#{rand(10..23)}-#{rand(1..12)}-#{rand(1..28)} #{rand(0..23)}:#{rand(0..59)}:#{rand(0..59)}"
+                           when :date
+                             "20#{rand(10..23)}-#{rand(1..12)}-#{rand(1..28)}"
+                           when :time
+                             "#{rand(0..23)}:#{rand(0..59)}:#{rand(0..59)}"
+                           when :boolean
+                             false
+                           when :references, :belongs_to,
+                                :attachment, :attachments,
+                                :rich_text
+                             nil
+                           else
+                             ''
+                           end
       end
     end
   end

@@ -33,7 +33,7 @@ for attribute in attributes
 <%
   else
 -%>
-        assert_select 'div', text: Regexp.new('<%= attribute.default.to_s %>')
+        assert_select 'div', text: Regexp.new('<%= attribute.factory_value.to_s %>')
 <%
   end
 end

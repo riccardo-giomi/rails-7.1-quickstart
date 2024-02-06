@@ -15,7 +15,7 @@ attributes.each do |attribute|
     boolean_attributes << attribute
   end
 -%>
-    <%= attribute.name %> { <%= attribute.default.inspect %> }
+    <%= attribute.name %> { <%= attribute.factory_value.inspect %> }
 <%
 end
 -%>
@@ -28,9 +28,9 @@ attributes.each do |attribute|
   if attribute.attachment? || attribute.attachments?
     next
   elsif attribute.type == :boolean
-    value = !attribute.default
+    value = !attribute.factory_value
   else
-    value = attribute.default.inspect
+    value = attribute.factory_value.inspect
   end
 -%>
     <%= attribute.name %> { <%= value %> }
