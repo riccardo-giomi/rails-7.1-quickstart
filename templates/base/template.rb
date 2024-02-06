@@ -42,6 +42,11 @@ after_bundle do
     You might also want to check the system requirements at https://guides.rubyonrails.org/v7.1/active_storage_overview.html#requirements.
   SAY
 
+  say(<<~SAY, :yellow)
+
+    Running Rubocop with auto-fix on all the initial files
+  SAY
+
   # Let RuboCop fix the initial files.
   run 'bundle exec rubocop -A --fail-level A > /dev/null || true'
 end
