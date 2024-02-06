@@ -1,4 +1,4 @@
-- content_title = New '<%= human_name.downcase %>'
+- content_title = 'New <%= human_name.downcase %>'
 - content_for :page_title, "<%= human_name.pluralize %> | #{content_title}"
 
 div class="w-full"

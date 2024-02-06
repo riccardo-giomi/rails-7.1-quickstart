@@ -1,31 +1,54 @@
 - # locals: (<%= singular_name %>:, controls:)
 
 div id="#{dom_id <%= singular_name %>}" class="border-2 border-black dark:border-slate-600 p-2 mt-2"
-  div class="lg:grid lg:grid-cols-5"
+  div class="lg:grid lg:grid-cols-5 lg:gap-2"
     div class="lg:col-span-4"
-<% if title_attribute =  [:title, :name].find { attributes_names.include?(_1) } -%>
-      div class="text-lg font-bold"
-        = link_to model_title(<%= singular_name %>, <%= singular_name %>.<%= title_attribute %>), <%= model_resource_name %>
-<% end -%>
-<% if description_attribute =  [:abstract, :summary, :short_description].find { attributes_names.include?(_1) } -%>
-      - if <%= singular_name %>.<%= description_attribute %>.present?
+<% if title_attribute =  attributes.find { _1.extended_type == :title } -%>
+      div class="text-2xl font-bold"
+        = link_to model_title(<%= model_resource_name %>, '<%= title_attribute.name %>'), <%= model_resource_name %>
 
-        div class="my-3"
-          = <%= singular_name %>.<%= description_attribute %>
+<% end -%>
+<% if abstract_attribute =  attributes.find { _1.extended_type == :abstract } -%>
+      - if <%= singular_name %>.<%= abstract_attribute.name %>.present?
+        div class="my-3 italic"
+          = <%= singular_name %>.<%= abstract_attribute.name %>
+
 <% end -%>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
-<%   break if [title_attribute, description_attribute].include?(attribute.name) -%>
+<%   next if [title_attribute, abstract_attribute].include?(attribute) -%>
 
       div class="my-3"
         span class="label" <%= attribute.human_name %>
-<%   if attribute.attachment? -%>
-        - if <%= singular_name %>.<%= attribute.column_name %>.attached?
-          = link_to <%= singular_name %>.<%= attribute.column_name %>.filename, <%= singular_name %>.<%= attribute.column_name %>
+<%   if attribute.extended_type == :image -%>
+        - if <%= model_resource_name %>.<%= attribute.column_name %>.attached?
+          div class="w-fit mx-auto lg:mx-0"
+            = render 'application/image', image: <%= model_resource_name %>.<%= attribute.column_name %>
+        - else
+          span class="italic font-medium" There is no image
+<%   elsif attribute.extended_type == :images -%>
+        - unless <%= model_resource_name %>.<%= attribute.column_name %>.empty?
+          div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-1"
+            - <%= model_resource_name %>.<%= attribute.column_name %>.each do |image|
+              div class="flex gap-2 grid-col-1 xl:grid-col-2 w-fit lg:w-auto mx-auto lg:mx-0"
+                = render 'application/image', image:
+        - else
+          span class="italic font-medium" There are no images
+<%   elsif attribute.attachment? -%>
+        - if <%= model_resource_name %>.<%= attribute.column_name %>.attached?
+          div class="lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-2 w-full lg:w-auto p-2"
+            div class="border border-black dark:border-slate-600"
+              = render 'application/file', file: <%= model_resource_name %>.<%= attribute.column_name %>
+        - else
+          span class="italic font-medium" There is no file
 <%   elsif attribute.attachments? -%>
-        - <%= singular_name %>.<%= attribute.column_name %>.each do |<%= attribute.singular_name %>|
-          div
-            = link_to <%= attribute.singular_name %>.filename, <%= attribute.singular_name %>
-<%  else -%>
+        div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 p-2"
+          - unless <%= model_resource_name %>.<%= attribute.column_name %>.empty?
+            - <%= model_resource_name %>.<%= attribute.column_name %>.each do |file|
+              div class="grid-col-1 border border-black dark:border-slate-600"
+                = render 'application/file', file:
+          - else
+            span class="italic font-medium" There are no files
+<%   else -%>
         = model_value(<%= singular_name %>, '<%= attribute.column_name %>')
 <%   end -%>
 <% end -%>
@@ -36,6 +59,6 @@ div id="#{dom_id <%= singular_name %>}" class="border-2 border-black dark:border
           - if controls.include?(:show)
             = link_to 'Show <%= human_name.downcase %>', <%= model_resource_name %>, class: 'mb-2 button', title: 'Show <%= human_name.downcase %>'
           - if controls.include?(:edit)
-            = link_to 'Edit <%= human_name.downcase %>', edit_helper(type: :path), class: 'mb-2 button', title: 'Edit <%= human_name.downcase %>'
+            = link_to 'Edit <%= human_name.downcase %>', <%= edit_helper(singular_name , type: :path) %>, class: 'mb-2 button', title: 'Edit <%= human_name.downcase %>'
           - if controls.include?(:destroy)
             = delete_button_with_dialog 'Are you sure you want to delete this <%= human_name.downcase %>?', 'Delete <%= human_name.downcase %>', <%= model_resource_name %>, class: 'mb-2 btn-important'

@@ -10,4 +10,4 @@ div data-controller="dialog"
         button class="btn-important" data-action="click->dialog#submitForm" data-dialog-form-id-param=form_id Delete
         button class="button mt-4" data-action="click->dialog#close" Cancel
 
-  = button_to button_text, url_for(@resource), method: :delete, class:, form: { id: form_id }, title: button_text, data: { action: 'click->dialog#open' }
+  = button_to button_text, url_for(resource), method: :delete, class:, form: { id: form_id }, title: button_text, data: { action: 'click->dialog#open' }

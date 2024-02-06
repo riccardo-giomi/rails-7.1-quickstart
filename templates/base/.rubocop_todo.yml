@@ -4,3 +4,15 @@
 Bundler/DuplicatedGroup:
   Exclude:
     - Gemfile
+
+Rails/I18nLocaleTexts:
+  Exclude:
+    - app/**/*
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/* # due to activestorage migrations created on install
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/* # due to activestorage migrations created on install

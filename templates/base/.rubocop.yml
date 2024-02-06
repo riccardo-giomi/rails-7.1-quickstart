@@ -8,6 +8,9 @@ require:
 
 AllCops:
   NewCops: enable
+  Exclude:
+    - lib/templates/rspec/model/model_spec.rb
+    - lib/templates/rspec/scaffold/*
 
 Layout/HashAlignment:
   EnforcedHashRocketStyle: table
@@ -17,14 +20,19 @@ Metrics/BlockLength:
     - config/environments/*
 RSpec/ExampleLength:
   Exclude:
+    - spec/helpers/**/*
     - spec/requests/**/*
+    - spec/views/**/*
 RSpec/MultipleMemoizedHelpers:
   Exclude:
     - spec/requests/**/*
 RSpec/MultipleExpectations:
   Exclude:
+    - spec/helpers/**/*
     - spec/requests/**/*
     - spec/views/**/*
+RSpec/NestedGroups:
+  Max: 4
 Style/Documentation:
   Exclude:
     - app/controllers/**/*

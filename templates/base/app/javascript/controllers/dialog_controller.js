@@ -12,6 +12,8 @@ export default class extends Controller {
     this.dialogTarget.close()
   }
 
+  doNothing(e) {}
+
   submitForm({ params: { formId } }) {
     const form = document.getElementById(formId)
 

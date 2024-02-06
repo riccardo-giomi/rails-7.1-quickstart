@@ -1,39 +1,66 @@
 - # locals: (<%= model_resource_name %>:)
+<% # Enforce field of type "title" to be first, and "abstract" second: -%>
+<%
+  title_index        = attributes.index { _1.extended_type == :title }
+  title_attribute    = attributes.delete_at(title_index) if title_index
+  abstract_index     = attributes.index { _1.extended_type == :abstract }
+  abstract_attribute = attributes.delete_at(abstract_index) if abstract_index
+
+  attributes.unshift(abstract_attribute) if abstract_index
+  attributes.unshift(title_attribute)    if title_index
+-%>
 
 div class="border-2 border-black dark:border-slate-600 p-2 mt-2"
   = form_with(model: <%= model_resource_name %>, class: 'contents') do |form|
-    - if <%= singular_table_name %>.errors.any?
+    - if <%= model_resource_name %>.errors.any?
       div id="errors-explanation"
-        - errors_count = pluralize(<%= singular_table_name %>.errors.count, 'error')
-        h2 = "#{errors_count} prohibited this <%= singular_table_name %> from being saved:"
+        - errors_count = pluralize(<%= model_resource_name %>.errors.count, 'error')
+        h2 = "#{errors_count} prohibited this <%= human_name.downcase %> from being saved:"
         ul class="list-disc"
-          - <%= singular_table_name %>.errors.each do |error|
+          - <%= model_resource_name %>.errors.each do |error|
             li = error.full_message
-<% attributes.each do |attribute| -%>
-<%   name = attribute.column_name -%>
-<%   type = attribute.field_type -%>
-<%   options = nil -%>
-<%   if attribute.password_digest? -%>
-<%     name = 'password' -%>
-<%     type = 'password_field' -%>
-<%   elsif attribute.attachments? -%>
-<%     options = 'multiple: true' -%>
-<%   end -%>
+<%
+  attributes.each do |attribute|
+    name          = attribute.column_name
+    type          = attribute.field_type
+    extended_type = attribute.extended_type
+    options       = nil
+    if attribute.password_digest?
+      name = 'password'
+      type = 'password_field'
+    end
+-%>
 
+<%  if attribute.attachment? -%>
+    div class="my-3"
+      = form.label :<%= name %>
+      / set is_required: to true for files with attached: true validations
+      = render 'application/form_file', form:, field: '<%= name %>', file: <%= model_resource_name %>.persisted_<%= name %>, is_required: false
+
+<%  elsif attribute.attachments? -%>
+    div class="my-3"
+      = form.label :<%= name %>
+      / set is_required: to true for files with attached: true validations
+      = render 'application/form_files', form:, field: '<%= name %>', files: <%= model_resource_name %>.persisted_<%= name %>, is_required: false
+
+<%  else -%>
     div class="my-3"
       = form.label :<%= name %>
       = form.<%= type %> :<%= name %><%= options ? ", #{options}" : '' %>
       - if error = <%= singular_table_name %>.errors[:<%= name %>]&.first
         p class="field-error-explanation" = error.capitalize
-<%   if attribute.password_digest? -%>
 
+<%    if attribute.password_digest? -%>
     div class="my-3"
       = form.label :password_confirmation
       = form.password_field :password_confirmation
       - if error = <%= singular_table_name %>.errors[:password_confirmation]&.first
         p class="field-error-explanation" = error.capitalize
-<%   end -%>
-<% end -%>
 
+<%    end -%>
+<%  end -%>
+<%
+  end
+-%>
     div class="pt-3"
       = form.submit class: 'btn-submit'

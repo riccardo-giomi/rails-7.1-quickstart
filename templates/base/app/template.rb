@@ -14,10 +14,10 @@ insert_into_file 'app/mailers/application_mailer.rb',
                  before: 'class ApplicationMailer < ActionMailer::Base'
 
 copy_file 'app/assets/stylesheets/application.tailwind.css', force: true
-copy_file 'app/javascript/controllers/dialog_controller.js'
 copy_file 'app/helpers/application_helper.rb', force: true
+
 copy_file 'app/views/layouts/application.html.slim'
 remove_file 'app/views/layouts/application.html.erb'
 
-copy_file 'app/views/application/_delete_button_with_dialog.html.slim'
-copy_file 'app/views/application/_notifications.html.slim'
+directory 'app/javascript/controllers'
+directory 'app/views/application'

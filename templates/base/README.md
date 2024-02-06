@@ -8,6 +8,7 @@ Rails will be installed with:
 - FactoryBot for test fixtures
 - Slim as the view template language
 - TailwindCSS as the CSS framework
+- SVG icons from heroicons.com
 - Propshaft for assets and Import Maps for JavaScript
 - StimulusJS
 - the Rubocop gem, with a decent configuration in `.rubocop.yml`

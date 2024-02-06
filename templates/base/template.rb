@@ -2,6 +2,9 @@
 
 add_template_repository_to_source_path
 
+gem 'active_storage_validations'
+gem 'image_processing'
+gem 'ruby-vips'
 gem_group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'factory_bot_rails'
@@ -31,7 +34,7 @@ after_bundle do
   unless options['skip_active_storage']
     say("\nSetting up ActiveStorage...", :yellow)
     rails_command 'active_storage:install '
-    say('... done, remember to run bin/rails db:migrate.', :yellow)
+    say('... done.', :yellow)
     say(<<~SAY, :yellow)
       You might also want to check the system requirements at https://guides.rubyonrails.org/v7.1/active_storage_overview.html#requirements.
     SAY
