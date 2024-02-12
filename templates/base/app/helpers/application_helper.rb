@@ -11,10 +11,27 @@ module ApplicationHelper
 
   def model_value(model, attribute_name, default: '---')
     value = model.try(attribute_name)
-    return default if value.blank?
 
-    value = I18n.l value if value.respond_to?(:strftime)
-    value
+    value.presence || default
+  end
+
+  def model_date_value(model, attribute_name, default: '---')
+    value = model.try(attribute_name)
+
+    value.present ? I18n.l(value, format: :template_date) : default
+  end
+
+  def model_datetime_value(model, attribute_name, default: '---')
+    value = model.try(attribute_name)
+
+    value.present ? I18n.l(value, format: :template_datetime) : default
+  end
+  alias model_timestamp_value model_datetime_value
+
+  def model_time_value(model, attribute_name, default: '---')
+    value = model.try(attribute_name)
+
+    value.present ? I18n.l(value, format: :template_time) : default
   end
 
   def default_image_tag(image)

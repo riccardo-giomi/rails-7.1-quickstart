@@ -25,3 +25,5 @@ insert_into_file 'config/application.rb', <<~RUBY, after: 'Bundler.require(*Rail
   # generators.
   require File.expand_path('../lib/generators/slim/railtie', __dir__)
 RUBY
+
+copy_file 'config/locales/en.yml', force: true

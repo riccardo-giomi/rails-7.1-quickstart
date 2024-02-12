@@ -45,22 +45,22 @@ module Rails
         end
       end
 
-      def factory_value # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
+      def factory_value # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
         @factory_value ||= case type
                            when :string, :text
                              "#{name.capitalize} Value"
                            when :integer
-                             rand(1..99)
+                             42
                            when :float
-                             rand(1.0..9.9)
+                             13.37
                            when :decimal
-                             rand(1.0..9.9).to_s
+                             '1337.42'
                            when :datetime, :timestamp
-                             "20#{rand(10..23)}-#{rand(1..12)}-#{rand(1..28)} #{rand(0..23)}:#{rand(0..59)}:#{rand(0..59)}"
+                             '2024-02-01 13:37:33'
                            when :date
-                             "20#{rand(10..23)}-#{rand(1..12)}-#{rand(1..28)}"
+                             '2024-02-01'
                            when :time
-                             "#{rand(0..23)}:#{rand(0..59)}:#{rand(0..59)}"
+                             '12:40:51'
                            when :boolean
                              false
                            when :references, :belongs_to,
