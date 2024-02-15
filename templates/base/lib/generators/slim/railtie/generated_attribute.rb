@@ -45,24 +45,24 @@ module Rails
         end
       end
 
-      def factory_value # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+      def factory_value(alternative: false) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/PerceivedComplexity
         @factory_value ||= case type
                            when :string, :text
-                             "#{name.capitalize} Value"
+                             "#{alternative? ? 'Another ' : ''}#{name.capitalize} Value"
                            when :integer
-                             42
+                             alternative ? 24 : 42
                            when :float
-                             13.37
+                             alternative ? 73.31 : 13.37
                            when :decimal
-                             '1337.42'
+                             alternative ? '73.31' : '13.37'
                            when :datetime, :timestamp
-                             '2024-02-01 13:37:33'
+                             alternative ? '2023-11-17 04:21:11' : '2024-01-21 13:37:33'
                            when :date
-                             '2024-02-01'
+                             alternative ? '2024-01-25' : '2024-02-01'
                            when :time
-                             '12:40:51'
+                             alternative ? '12:40:51' : '06:33:00'
                            when :boolean
-                             false
+                             alternative
                            when :references, :belongs_to,
                                 :attachment, :attachments,
                                 :rich_text
