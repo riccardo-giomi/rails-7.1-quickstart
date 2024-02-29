@@ -34,9 +34,10 @@ module ApplicationHelper
     value.present ? I18n.l(value, format: :template_time) : default
   end
 
-  def default_image_tag(image)
-    filename = image.filename.sanitized
-    image_tag image, alt: filename, title: filename
+  def default_image_tag(image, variant: nil)
+    file = variant ? image.variant(variant) : image
+    filename = file.filename.sanitized
+    image_tag file, alt: filename, title: filename
   end
 
   def delete_button_with_dialog(message, button_text, resource, class:)

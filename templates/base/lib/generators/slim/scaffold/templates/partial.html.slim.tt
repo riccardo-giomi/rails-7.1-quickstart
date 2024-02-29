@@ -37,10 +37,9 @@ attributes.reject(&:password_digest?).each do |attribute|
   elsif attribute.extended_type == :images
 -%>
         - unless <%= model_resource_name %>.<%= attribute.column_name %>.empty?
-          div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-1"
+          div class="w-fit mx-auto lg:mx-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2"
             - <%= model_resource_name %>.<%= attribute.column_name %>.each do |image|
-              div class="flex gap-2 grid-col-1 xl:grid-col-2 w-fit lg:w-auto mx-auto lg:mx-0"
-                = render 'application/image', image:
+              = render 'application/image', image:
         - else
           span class="italic font-medium" There are no images
 <%
