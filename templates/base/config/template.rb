@@ -3,6 +3,7 @@
 environment <<-'RUBY', env: 'development'
   config.generators do |g|
     g.factory_bot suffix: 'factory'
+    g.helper_specs false
 
     # Let RuboCop autocorrect files from generators:
     # https://github.com/rubocop/rubocop-rails#rails-configuration-tip
