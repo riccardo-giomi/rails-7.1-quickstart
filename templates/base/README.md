@@ -17,12 +17,12 @@ fun stuff.
 3. `bin/rails db:create db:migrate` 
 4. 
 ``` bash
-bin/rails generate scaffold Example title:title abstract:abstract datetime:datetime date:date time:time image:image images:images file:attachment files:attachments boolean:boolean
+bin/rails generate scaffold ExampleRecord title:title abstract:abstract datetime:datetime date:date time:time image:image images:images file:attachment files:attachments boolean:boolean
 ```
 5. `bin/rails db:migrate` 
 6. `bin/dev`
 
-The scaffolding results should be available at the usual `http://localhost:3000/examples` URL.
+The scaffolding results should be available at the usual `http://localhost:3000/example_records` URL.
 
 ## Features
 
@@ -268,10 +268,10 @@ will check that at least RSpec and Factory Bot work.
 
 #### Generate a scaffold
 
-The following example command generates an Example model with all of the goodies mentioned:
+The following example command generates an ExampleRecord model with all of the goodies mentioned:
 
 ``` bash
-bin/rails generate scaffold Example title:title abstract:abstract datetime:datetime date:date time:time image:image images:images file:attachment files:attachments boolean:boolean
+bin/rails generate scaffold ExampleRecord title:title abstract:abstract datetime:datetime date:date time:time image:image images:images file:attachment files:attachments boolean:boolean
 ```
 
 #### Create the DB table for the new Model and run the specs again
@@ -286,4 +286,4 @@ cooler... and should give you an idea of what RSpec examples where created.
 
 #### Start the server and have a look
 
-Start the server with the `bin/dev` command, the scaffolded pages should be available at `http://localhost:3000/examples`.
+Start the server with the `bin/dev` command, the scaffolded pages should be available at `http://localhost:3000/example_records`.
