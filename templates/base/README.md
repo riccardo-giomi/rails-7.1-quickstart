@@ -123,6 +123,9 @@ New type, same as `:attachment` or `:attachments`, except:
 5. Generated specs will already include tests for the additional validations and
    variants.
 
+The variants defined for images are `:gallery` (resized to 300x300) and `:thumb`
+(100x100). The last one is not used anywhere for the moment.
+
 Note: same as attachment fields, the generated controller will handle parameters
 a bit differently than usual.
 
