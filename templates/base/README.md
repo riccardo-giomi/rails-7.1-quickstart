@@ -40,7 +40,7 @@ The following gems are installed and configured at least to a basic level:
 
 #### Test Framework
 
-- [RSpec](https://rspec.info/) replacing mini_test as teh test framework
+- [RSpec](https://rspec.info/) replacing mini_test as the test framework
 - [FactoryBot](https://github.com/thoughtbot/factory_bot) for test fixtures
 
 #### Front-end
@@ -64,7 +64,7 @@ The following gems are installed and configured at least to a basic level:
 
 This template adds new field types that can be used with the
 `rails generate scaffold` command: these types will ultimately map to an
-original ones but will have additional behaviour or presentation somewhere.
+original one but will have additional behaviour or presentation somewhere.
 
 Note: these special types will exist only until the generator task ends, there
 is no support for them inside the generated code.
@@ -78,11 +78,11 @@ New type, same as `:string`, except:
 1. It will always be considered required when generating migrations and
    validations
 2. It will be the first field shown in the appropriate views, will have a
-   distinct style and will be a link to the corresponding _show_ where it makes
-   sense
-3. Only one field of this type is expected, any extra :title field should be
+   distinct style and will be a link to the corresponding show view where
+   it makes sense
+4. Only one field of this type is expected, any extra :title field should be
    treated like a normal :string field in most places
-4. The generated specs will test that the field is indeed required.
+5. The generated specs will test that the field is indeed required
 
 #### :abstract
 
@@ -117,11 +117,12 @@ New type, same as `:attachment` or `:attachments`, except:
    examples on how to expand on those
 2. Model code will also have a couple of sensible variants already defined
 3. The Front-end presents these fields appropriately, with the possibility to
-   click on the image to get a gull-size modal where applicable
+   click on the image to get a full-size modal where applicable
 4. Forms will have the same features as per `:attachment` and `:attachments`
    above
 5. Generated specs will already include tests for the additional validations and
-   variants.
+   variants, plus commented-out examples of possible specs for additional
+   validations
 
 The variants defined for images are `:gallery` (resized to 300x300) and `:thumb`
 (100x100). The last one is not used anywhere for the moment.
@@ -147,11 +148,11 @@ The theme itself is still a work-in-progress. It is a (quite messy) mix of
 general styles in `app/assets/stylesheets/application.tailwind.css` and
 TailwindCSS classes in the HTML code.
 
-All view templates and partials are written with
+All view templates, partials and layouts are written or re-written with
 [Slim](https://slim-template.github.io/).
 
 The confirmation dialogs and full-size image modals are controlled with
-[StimulusJS](https://stimulus.hotwired.dev/).
+[StimulusJS](https://stimulus.hotwired.dev/) controllers.
 
 Common or repeatable code is generally handled in partials, with helper support
 where needed.
@@ -266,7 +267,7 @@ present and correct, and edit it as required.
 
 #### Run the specs
 
-There's not much, but running `bundle exec rspec` in the new app's directory
+There isn't not much, but running `bundle exec rspec` in the new app's directory
 will check that at least RSpec and Factory Bot work.
 
 #### Generate a scaffold
@@ -285,7 +286,7 @@ bundle exec rspec --format d
 ```
 
 The "format as documentation" option is not really required, but it looks
-cooler... and should give you an idea of what RSpec examples where created.
+cooler... and should give you an idea of what examples where created.
 
 #### Start the server and have a look
 
