@@ -13,14 +13,14 @@ fun stuff.
 
 1. the installation file is [here](./_railsrc), save locally as `~/.railsrc`
 2. `rails new <app name>`
-2. `cd <app name>/`
-3. `bin/rails db:create db:migrate` 
-4. 
+3. `cd <app name>/`
+4. `bin/rails db:create db:migrate` 
+5. 
 ``` bash
 bin/rails generate scaffold ExampleRecord title:title abstract:abstract datetime:datetime date:date time:time image:image images:images file:attachment files:attachments boolean:boolean
 ```
-5. `bin/rails db:migrate` 
-6. `bin/dev`
+6. `bin/rails db:migrate` 
+7. `bin/dev`
 
 The scaffolding results should be available at the usual `http://localhost:3000/example_records` URL.
 
