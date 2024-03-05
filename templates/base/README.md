@@ -241,9 +241,6 @@ As always with these kind of files, you should have a look before using it, and
 see that there are no shenenigans. Also please remember to remove the file when
 it's not needed or wanted anymore.
 
-Note: comments in the .railsrc file seem to not behave correctly on the current
-Rails version, so the current `_railsrc` file does not have any.
-
 ### Rails new away
 
 As long as the quickstart's `.railsrc` file is available, running `rails new <app>`
