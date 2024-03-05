@@ -198,7 +198,6 @@ with Bundler 2.4.15, consider these the _recommended_ versions.
 According to the Ruby on Rails gemspec file the **required** versions are:
 
 - Ruby >= 2.7.0
-- Ruby on Rails >= 1.8.11
 - Bundler >= 1.15.0
 
 You'll also need SQLite3 installed. The Rails Guide is not very clear on the
