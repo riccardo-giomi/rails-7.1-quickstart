@@ -20,7 +20,6 @@ copy_file 'lib/generators/slim/scaffold/templates/index.html.slim.tt'
 copy_file 'lib/generators/slim/scaffold/templates/new.html.slim.tt'
 copy_file 'lib/generators/slim/scaffold/templates/partial.html.slim.tt'
 copy_file 'lib/generators/slim/scaffold/templates/show.html.slim.tt'
-copy_file 'lib/generators/slim/scaffold/templates/show.html.slim.tt'
 
 # These templates do not end in ".tt" and will not be interpreted, so we can use
 # #directory
