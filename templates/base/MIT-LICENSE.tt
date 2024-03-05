@@ -1,5 +1,6 @@
-<% username =  `git config user.name`.strip rescue '' -%>
-Copyright (c)<%= username.present? ? " #{username}" : '' %>.
+<% name =  `git config user.name`.strip rescue '' -%>
+<% year = Date.today.year -%>
+Copyright (c) <%= "#{year} #{name}"%>.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
