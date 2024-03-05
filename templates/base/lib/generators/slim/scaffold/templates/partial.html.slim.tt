@@ -62,7 +62,7 @@ attributes.reject(&:password_digest?).each do |attribute|
           - else
             span class="italic font-medium" There are no files
 <%
-  elsif attribute.type.in? %i[:datetime :timestamp :date :time]
+  elsif attribute.type.in? %i[datetime timestamp date time]
 -%>
         = model_<%= attribute.type %>_value(<%= singular_name %>, '<%= attribute.column_name %>')
 <%
