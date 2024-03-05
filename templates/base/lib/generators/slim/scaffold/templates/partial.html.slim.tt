@@ -6,17 +6,17 @@ div id="#{dom_id <%= singular_name %>}" class="border-2 border-black dark:border
 <%
 if title_attribute =  attributes.find { _1.extended_type == :title }
 -%>
+
       div class="text-2xl font-bold"
         = link_to model_title(<%= model_resource_name %>, '<%= title_attribute.name %>'), <%= model_resource_name %>
-
 <%
 end
 if abstract_attribute =  attributes.find { _1.extended_type == :abstract }
   -%>
+
       - if <%= singular_name %>.<%= abstract_attribute.name %>.present?
         div class="my-3 italic"
           = <%= singular_name %>.<%= abstract_attribute.name %>
-
 <%
 end
 attributes.reject(&:password_digest?).each do |attribute|
