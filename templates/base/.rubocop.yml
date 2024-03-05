@@ -12,6 +12,9 @@ AllCops:
     - lib/templates/rspec/model/model_spec.rb
     - lib/templates/rspec/scaffold/*
 
+Layout/LineLength:
+  Exclude:
+    - db/seeds.rb
 Layout/HashAlignment:
   EnforcedHashRocketStyle: table
   EnforcedColonStyle: table
