@@ -48,7 +48,7 @@ module Rails
       def factory_value(alternative: false) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/AbcSize, Metrics/PerceivedComplexity
         @factory_value ||= case type
                            when :string, :text
-                             "#{alternative ? 'Another ' : ''}#{name.capitalize} Value"
+                             "#{alternative ? 'Another ' : ''}#{name.humanize} Value"
                            when :integer
                              alternative ? 24 : 42
                            when :float
