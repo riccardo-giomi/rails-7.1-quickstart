@@ -10,4 +10,4 @@ div class="w-full"
     div class="lg:flex-shrink"
       = link_to 'Show this <%= human_name.downcase %>', <%= model_resource_name(prefix: '@') %>, class: 'button'
 
-  = render 'form', <%= model_resource_name %>: <%= model_resource_name(prefix: '@') %>
+  = render 'form', <%= model_resource_name %>: <%= model_resource_name(prefix: '@') %>, controls: []

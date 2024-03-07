@@ -8,4 +8,5 @@ div class="w-full"
     div class="lg:flex-shrink"
       = link_to 'Back to <%= human_name.pluralize.downcase %>', <%= index_helper(type: :path) %>, class: 'button'
 
+  - # The _form partial allows for a :controls option, but it makes no sense with the "new" view.
   = render 'form', <%= model_resource_name %>: <%= model_resource_name(prefix: '@') %>
