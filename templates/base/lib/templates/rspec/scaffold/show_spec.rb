@@ -15,6 +15,11 @@ for attribute in attributes
                    elsif attribute.type == :boolean
                      # Because :complete_<model> factories are generated with booleans set as true
                      'true'
+
+                   elsif attribute.type.in? %i[datetime date time timestamp]
+                     type = attribute.type == :timestamp ? :datetime : attribute.type
+                     value = attribute.factory_value.try(:"to_#{type}")
+                     I18n.l(value, format: :"template_#{type}")
                    else
                      attribute.factory_value.to_s
                    end
