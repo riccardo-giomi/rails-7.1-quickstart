@@ -4,7 +4,7 @@
 module_namespacing do
 -%>
 RSpec.describe <%= class_name %> do
-  let(:<%= singular_name %>) { build(:<%= singular_name %>) }
+  let(:<%= singular_name %>) { build(:complete_<%= singular_name %>) }
 <%
   normal_attributes = attributes.reject { |attr| attr.attachment? || attr.attachments? }
   if normal_attributes.present?

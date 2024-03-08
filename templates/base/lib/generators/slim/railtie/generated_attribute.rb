@@ -62,7 +62,7 @@ module Rails
                            when :time
                              alternative ? '12:40:51' : '06:33:00'
                            when :boolean
-                             alternative
+                             !alternative
                            when :references, :belongs_to,
                                 :attachment, :attachments,
                                 :rich_text
