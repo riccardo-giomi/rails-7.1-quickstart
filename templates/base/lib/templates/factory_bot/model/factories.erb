@@ -21,7 +21,7 @@ attributes.each do |attribute|
   elsif attribute.type == :date
     value += '.to_date'
   elsif attribute.type == :time
-    value = "Time.zone.parse('#{value}').change(year: 2000, month: 1, day: 1)"
+    value = "Time.zone.parse(#{value}).change(year: 2000, month: 1, day: 1)"
   end
 -%>
     <%= attribute.name %> { <%= value %> }
