@@ -13,19 +13,32 @@ RSpec.describe <%= class_name %> do
   describe '.attributes' do
 <%
     normal_attributes.each do |attribute|
-      matcher_name = case attribute.type
-                     when :datetime, :timestamp
-                       'be_the_same_datetime'
-                     when :date
-                       'be_the_same_date'
-                     when :time
-                       'be_the_same_time'
-                     else
-                       'eq'
-                     end
+      if attribute.extended_type == :title
+-%>
+    describe '<%= attribute.name %>' do
+      specify('<%= attribute.name %>') { expect(<%= singular_name %>.<%= attribute.name %>).to eq(<%= attribute.factory_value.inspect %>) }
+
+      it 'is required' do
+        <%= singular_name%>.<%= attribute.name %> = nil
+        expect(<%= singular_name%>).not_to be_valid
+      end
+    end
+<%
+      else
+        matcher_name = case attribute.type
+                      when :datetime, :timestamp
+                        'be_the_same_datetime'
+                      when :date
+                        'be_the_same_date'
+                      when :time
+                        'be_the_same_time'
+                      else
+                        'eq'
+                      end
 -%>
     specify('<%= attribute.name %>') { expect(<%= singular_name %>.<%= attribute.name %>).to <%= matcher_name %>(<%= attribute.factory_value.inspect %>) }
 <%
+      end
     end
 -%>
   end
