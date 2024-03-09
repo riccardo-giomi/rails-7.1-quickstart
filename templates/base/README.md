@@ -5,6 +5,11 @@ template](https://guides.rubyonrails.org/rails_application_templates.html) that
 provides a custum configuration and additional features on top of [Rails'
 scaffolding](https://www.rubyguides.com/2020/03/rails-scaffolding/).
 
+## Example application
+
+[rails-articles](https://github.com/riccardo-giomi/rails-articles) is an example
+application created starting from this template.
+
 ## Quickstart's... quick start
 
 For those that would like to give it a spin and have a look a the result, here
