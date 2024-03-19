@@ -44,7 +44,7 @@ attributes.reject(&:password_digest?).each do |attribute|
 -%>
   - if <%= model_resource_name %>.<%= attribute.column_name %>.attached?
     div class="lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-2 w-full lg:w-auto p-2"
-      div class="border border-black dark:border-slate-600"
+      div
         = render 'application/file', file: <%= model_resource_name %>.<%= attribute.column_name %>
   - else
     span class="italic font-medium" There is no file
@@ -54,7 +54,7 @@ attributes.reject(&:password_digest?).each do |attribute|
   div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 p-2"
     - unless <%= model_resource_name %>.<%= attribute.column_name %>.empty?
       - <%= model_resource_name %>.<%= attribute.column_name %>.each do |file|
-        div class="grid-col-1 border border-black dark:border-slate-600"
+        div class="grid-col-1"
           = render 'application/file', file:
     - else
       span class="italic font-medium" There are no files
@@ -71,7 +71,7 @@ attributes.reject(&:password_digest?).each do |attribute|
 end
 -%>
 
-div id="#{dom_id <%= singular_name %>}" class="border-2 border-black dark:border-slate-600 p-2 mt-2"
+div id="#{dom_id <%= singular_name %>}" class="content-box"
   - if controls.empty?
     = content
   - else

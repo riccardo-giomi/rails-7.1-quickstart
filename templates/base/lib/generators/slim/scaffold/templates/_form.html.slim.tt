@@ -65,7 +65,7 @@
     div class="pt-3"
       = form.submit class: 'btn-submit'
 
-div class="border-2 border-black dark:border-slate-600 p-2 mt-2"
+div class="content-box"
   - if controls.empty?
     = content
   - else
