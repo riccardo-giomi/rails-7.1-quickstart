@@ -40,7 +40,7 @@ module ApplicationHelper
     image_tag file, alt: filename, title: filename
   end
 
-  def delete_button_with_dialog(message, button_text, resource, class:)
-    render partial: 'application/delete_button_with_dialog', locals: { message:, button_text:, resource:, class: }
+  def delete_button_with_dialog(message, button_text, resource)
+    render partial: 'application/delete_button_with_dialog', locals: { message:, button_text:, resource: }
   end
 end

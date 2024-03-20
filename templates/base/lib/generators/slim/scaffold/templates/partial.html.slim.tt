@@ -87,4 +87,4 @@ div id="#{dom_id <%= singular_name %>}" class="content-box"
             - if controls.include?(:edit)
               = link_to 'Edit <%= human_name.downcase %>', <%= edit_helper(singular_name , type: :path) %>, class: 'mb-2 button', title: 'Edit <%= human_name.downcase %>'
             - if controls.include?(:destroy)
-              = delete_button_with_dialog 'Are you sure you want to delete this <%= human_name.downcase %>?', 'Delete <%= human_name.downcase %>', <%= model_resource_name %>, class: 'mb-2 btn-important'
+              = delete_button_with_dialog 'Are you sure you want to delete this <%= human_name.downcase %>?', 'Delete <%= human_name.downcase %>', <%= model_resource_name %>

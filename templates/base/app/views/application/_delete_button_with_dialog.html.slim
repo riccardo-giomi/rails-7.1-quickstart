@@ -1,13 +1,13 @@
-- # locals: (message:, button_text:, resource:, class:)
+- # locals: (message:, button_text:, resource:)
 - dom_id = dom_id resource
-- form_id = "delete-form-#{dom_id}"
 
 div data-controller="dialog"
   dialog id="delete-#{dom_id}" data-dialog-target="dialog"
     div class="content-box mt-0 p-3"
       p class="text-lg font-bold mb-6" = message
       div
-        button class="btn-important" data-action="click->dialog#submitForm" data-dialog-form-id-param=form_id Delete
+        = button_to button_text, url_for(resource), method: :delete, class: 'btn-important', title: button_text
         button class="button mt-4" data-action="click->dialog#close" Cancel
 
-  = button_to button_text, url_for(resource), method: :delete, class:, form: { id: form_id }, title: button_text, data: { action: 'click->dialog#open' }
+  button class="btn-important mb2" data-action="click->dialog#open"
+    = button_text
