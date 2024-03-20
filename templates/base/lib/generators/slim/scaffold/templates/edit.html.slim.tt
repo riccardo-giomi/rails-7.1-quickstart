@@ -4,7 +4,7 @@
 div class="w-full"
   div class="header lg:flex items-center gap-1"
     div class="lg:flex-grow"
-      h1 class="text-left" = content_title
+      h1 class="page-title" = content_title
     div class="lg:flex-shrink"
       = link_to 'Back to <%= human_name.pluralize.downcase %>', <%= index_helper(type: :path) %>, class: 'mb-2 lg:m-0 button', title: 'Back to <%= human_name.pluralize.downcase %>'
     div class="lg:flex-shrink"

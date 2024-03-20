@@ -93,6 +93,10 @@
     @apply content-box mt-0;
   }
 
+  .page-title {
+    @apply text-center lg:text-left;
+  }
+
   .content-box {
     @apply bg-neutral-200 border border-stone-300 p-3 mt-3 md:mt-5 shadow-md shadow-stone-300;
     @apply dark:bg-neutral-950 dark:border-neutral-700 dark:shadow-md dark:shadow-neutral-700;
