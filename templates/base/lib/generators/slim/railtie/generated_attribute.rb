@@ -54,7 +54,7 @@ module Rails
                            when :float
                              13.37
                            when :decimal
-                             '13.37'
+                             BigDecimal('13.37')
                            when :datetime, :timestamp
                              '2024-01-21 13:37:33'
                            when :date
@@ -81,7 +81,7 @@ module Rails
                                        when :float
                                          73.31
                                        when :decimal
-                                         '73.31'
+                                         BigDecimal('73.31')
                                        when :datetime, :timestamp
                                          '2023-11-17 04:21:11'
                                        when :date
