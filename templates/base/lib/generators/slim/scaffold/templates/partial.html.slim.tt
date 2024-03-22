@@ -34,7 +34,7 @@ attributes.reject(&:password_digest?).each do |attribute|
   elsif attribute.extended_type == :images
 -%>
   - unless <%= model_resource_name %>.<%= attribute.column_name %>.empty?
-    div class="w-fit grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2"
+    div class="w-fit flex flex-wrap gap-2"
       - <%= model_resource_name %>.<%= attribute.column_name %>.each do |image|
         = render 'application/image', image:
   - else
@@ -43,7 +43,7 @@ attributes.reject(&:password_digest?).each do |attribute|
   elsif attribute.attachment?
 -%>
   - if <%= model_resource_name %>.<%= attribute.column_name %>.attached?
-    div class="lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-2 w-full lg:w-auto p-2"
+    div class="w-fit p-2"
       div
         = render 'application/file', file: <%= model_resource_name %>.<%= attribute.column_name %>
   - else
@@ -51,7 +51,7 @@ attributes.reject(&:password_digest?).each do |attribute|
 <%
   elsif attribute.attachments?
 -%>
-  div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2 p-2"
+  div class="flex flex-wrap gap-2 p-2"
     - unless <%= model_resource_name %>.<%= attribute.column_name %>.empty?
       - <%= model_resource_name %>.<%= attribute.column_name %>.each do |file|
         div class="grid-col-1"
