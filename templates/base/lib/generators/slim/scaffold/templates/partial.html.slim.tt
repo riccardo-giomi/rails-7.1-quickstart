@@ -26,7 +26,7 @@ attributes.reject(&:password_digest?).each do |attribute|
   if attribute.extended_type == :image
 -%>
   - if <%= model_resource_name %>.<%= attribute.column_name %>.attached?
-    div class="w-fit mx-auto lg:mx-0"
+    div class="w-fit"
       = render 'application/image', image: <%= model_resource_name %>.<%= attribute.column_name %>
   - else
     span class="italic font-medium" There is no image
@@ -34,7 +34,7 @@ attributes.reject(&:password_digest?).each do |attribute|
   elsif attribute.extended_type == :images
 -%>
   - unless <%= model_resource_name %>.<%= attribute.column_name %>.empty?
-    div class="w-fit mx-auto lg:mx-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2"
+    div class="w-fit grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-2"
       - <%= model_resource_name %>.<%= attribute.column_name %>.each do |image|
         = render 'application/image', image:
   - else
