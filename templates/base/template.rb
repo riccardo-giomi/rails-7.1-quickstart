@@ -12,11 +12,15 @@ gem_group :development, :test do
   gem 'rubocop-rspec',       require: false
 
   gem 'slim-rails'
+
+  gem 'solargraph'
+  gem 'solargraph-rails'
 end
 
 after_bundle do
   copy_file '.rubocop.yml'
   copy_file '.rubocop_todo.yml'
+  copy_file 'solargraph_helper.rb'
 
   copy_file '.gitignore', force: true
   copy_file '.rspec'
