@@ -97,8 +97,8 @@ class <%= class_name %> < <%= parent_class_name.classify %>
   if has_attachments
     attributes.select(&:attachment?).each do |attribute|
 -%>
-  # Returns nil if <%= attribute.name %> is not attached or if it's file is not
-  # persisted yet, or the attachment eitherwise.
+  # Returns nil if <%= attribute.name %> is not attached or if its file is not
+  # persisted yet. Returns the attachment otherwise.
   #
   # Useful when changing a record to identify pre-existing files that have a
   # signed_id from those that don't (and might need to be handled differently
