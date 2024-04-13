@@ -75,11 +75,11 @@ div id="#{dom_id <%= singular_name %>}" class="content-box"
   - if controls.empty?
     = content
   - else
-    div class="lg:grid lg:grid-cols-5 lg:gap-2"
-      div class="lg:col-span-4"
+    div class="lg:flex lg:gap-2"
+      div class="lg:flex-grow lg:col-span-4"
         = content
 
-      div class="pt-3 lg:pt-0 lg:col-span-1"
+      div class="pt-3 lg:pt-0 lg:flex-shrink"
         - unless controls.empty?
           div class="lg:sticky lg:top-1"
             - if controls.include?(:show)
