@@ -2,6 +2,8 @@
 
 # :nodoc:
 module ApplicationHelper
+  include Pagy::Frontend
+
   def model_title(model, attribute_name, default: nil)
     title = model.try(attribute_name)
     return title if title.present?

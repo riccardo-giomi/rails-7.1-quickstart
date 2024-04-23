@@ -22,15 +22,15 @@ for attribute in attributes
 
   if attribute.attachment?
 -%>
-      assert_select '<%= attribute.input_type -%>[name=?][type=?]', '<%= ns_file_name %>[<%= name %>]', 'file'
+      assert_select '<%= attribute.input_type -%>[name=?][type=?]', '<%= ns_file_name %>[<%= name %>]', 'file' # <%= attribute.name %>
 <%
   elsif attribute.attachments?
 -%>
-      assert_select '<%= attribute.input_type -%>[name=?][type=?][multiple]', '<%= ns_file_name %>[<%= name %>][]', 'file'
+      assert_select '<%= attribute.input_type -%>[name=?][type=?][multiple]', '<%= ns_file_name %>[<%= name %>][]', 'file' # <%= attribute.name %>
 <%
   else
 -%>
-      assert_select '<%= attribute.input_type -%>[name=?]', '<%= ns_file_name %>[<%= name %>]'
+      assert_select '<%= attribute.input_type -%>[name=?]', '<%= ns_file_name %>[<%= name %>]' # <%= attribute.name %>
 <%
   end
 end

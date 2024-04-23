@@ -11,11 +11,13 @@ end
 module_namespacing do
 -%>
 class <%= controller_class_name %>Controller < ApplicationController
+  include Pagy::Backend
+
   before_action :set_<%= singular_table_name %>, only: %i[show edit update destroy]
 
   # GET <%= route_url %> or <%= route_url %>.json
   def index
-    @<%= plural_table_name %> = <%= orm_class.all(class_name) %>
+    @pagy, @<%= plural_table_name %> = pagy(<%= orm_class.all(class_name) %>)
   end
 
   # GET <%= route_url %>/1 or <%= route_url %>/1.json

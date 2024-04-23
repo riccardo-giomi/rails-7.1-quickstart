@@ -25,9 +25,9 @@ for attribute in attributes
 -%>
       # Single file attachment "<%= name %>"
       # To add or replace the file
-      assert_select 'input[name=?][type=?]', '<%= ns_file_name %>[<%= name %>]', 'file'
+      assert_select 'input[name=?][type=?]', '<%= ns_file_name %>[<%= name %>]', 'file'  # <%= attribute.name %>
       # To remove the file
-      assert_select 'input[name=?][type=?]', '<%= ns_file_name %>[<%= name %>]', 'checkbox'
+      assert_select 'input[name=?][type=?]', '<%= ns_file_name %>[<%= name %>]', 'checkbox' # <%= attribute.name %>
 
 <%
   elsif attribute.attachments?
@@ -35,19 +35,19 @@ for attribute in attributes
 
       # Multi-file attachments "<%= name %>"
       # To add new files
-      assert_select 'input[name=?][type=?][multiple]', '<%= ns_file_name %>[<%= name %>][]', 'file'
+      assert_select 'input[name=?][type=?][multiple]', '<%= ns_file_name %>[<%= name %>][]', 'file' # <%= attribute.name %>
       # To remove files
-      assert_select 'input[name=?][type=?]', '<%= ns_file_name %>[<%= name %>][]', 'checkbox'
+      assert_select 'input[name=?][type=?]', '<%= ns_file_name %>[<%= name %>][]', 'checkbox' # <%= attribute.name %>
 
 <%
   elsif attribute.type == :boolean
 -%>
-      assert_select 'input[name=?][type=hidden]', '<%= ns_file_name %>[<%= name %>]'
-      assert_select 'input[name=?][type=checkbox]', '<%= ns_file_name %>[<%= name %>]'
+      assert_select 'input[name=?][type=hidden]', '<%= ns_file_name %>[<%= name %>]' # <%= attribute.name %>
+      assert_select 'input[name=?][type=checkbox]', '<%= ns_file_name %>[<%= name %>]' # <%= attribute.name %>
 <%
   else
 -%>
-      assert_select '<%= attribute.input_type -%>[name=?]', '<%= ns_file_name %>[<%= name %>]'
+      assert_select '<%= attribute.input_type -%>[name=?]', '<%= ns_file_name %>[<%= name %>]' # <%= attribute.name %>
 <%
   end
 end

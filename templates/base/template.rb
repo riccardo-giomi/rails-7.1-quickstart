@@ -17,7 +17,7 @@ gem_group :development, :test do
   gem 'solargraph-rails'
 end
 
-after_bundle do
+after_bundle do # rubocop:disable Metrics/BlockLength
   copy_file '.rubocop.yml'
   copy_file '.rubocop_todo.yml'
   copy_file 'solargraph_helper.rb'
@@ -31,6 +31,9 @@ after_bundle do
   apply 'lib/template.rb'
 
   template 'MIT-LICENSE'
+
+  say('Installing gems for pagination support')
+  gem 'pagy', '~> 8.2'
 
   say("\nSetting up ActiveStorage...", :yellow)
   rails_command 'active_storage:install '

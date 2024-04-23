@@ -161,4 +161,30 @@
     @apply text-red-600 text-sm mt-1;
     @apply dark:text-red-500;
   }
+  nav.pagy.nav {
+
+
+    @apply flex space-x-1;
+
+    a {
+      @apply button;
+    }
+
+    a:not(.gap) {
+      &:not([href]) { /* disabled links */
+        @apply bg-stone-400 border-stone-500;
+        @apply dark:bg-neutral-500 dark:text-neutral-800;
+      }
+
+      &.current {
+        @apply bg-stone-50 text-stone-900;
+        @apply dark:bg-neutral-300 dark:text-neutral-900 dark:font-semibold;
+      }
+    }
+
+    a.gap {
+      @apply bg-stone-400 border-stone-500;
+      @apply dark:bg-neutral-500 dark:text-neutral-800;
+    }
+  }
 }

@@ -28,3 +28,4 @@ insert_into_file 'config/application.rb', <<~RUBY, after: 'Bundler.require(*Rail
 RUBY
 
 copy_file 'config/locales/en.yml', force: true
+copy_file 'config/initializers/pagy.rb'
